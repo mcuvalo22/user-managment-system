@@ -1,0 +1,158 @@
+@startuml ERA_Autoservis
+
+!theme plain
+skinparam linetype ortho
+
+' Entities
+entity "USERS" as users {
+  * **user_id** : UUID <<PK>>
+  --
+  * username : VARCHAR(50) <<UK>>
+  * email : VARCHAR(100) <<UK>>
+  * password_hash : TEXT
+  phone : VARCHAR(20)
+  * status : user_status_enum
+  metadata : JSONB
+  * created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+entity "ROLES" as roles {
+  * **role_id** : SERIAL <<PK>>
+  --
+  * role_name : VARCHAR(50) <<UK>>
+  description : TEXT
+  parent_role_id : INT <<FK>>
+  priority : INT
+  * created_at : TIMESTAMP
+}
+
+entity "PERMISSIONS" as permissions {
+  * **permission_id** : SERIAL <<PK>>
+  --
+  * permission_name : VARCHAR(100) <<UK>>
+  * resource_type : VARCHAR(50)
+  * action : permission_action_enum
+  description : TEXT
+}
+
+entity "USER_ROLES" as user_roles {
+  * **user_role_id** : SERIAL <<PK>>
+  --
+  * user_id : UUID <<FK>>
+  * role_id : INT <<FK>>
+  assigned_by : UUID <<FK>>
+  * assigned_at : TIMESTAMP
+}
+
+entity "ROLE_PERMISSIONS" as role_permissions {
+  * **role_permission_id** : SERIAL <<PK>>
+  --
+  * role_id : INT <<FK>>
+  * permission_id : INT <<FK>>
+  * granted_at : TIMESTAMP
+}
+
+entity "VEHICLES" as vehicles {
+  * **vehicle_id** : UUID <<PK>>
+  --
+  * owner_id : UUID <<FK>>
+  * license_plate : VARCHAR(20) <<UK>>
+  * brand : VARCHAR(50)
+  * model : VARCHAR(50)
+  year : INT
+  vin : VARCHAR(17) <<UK>>
+  metadata : JSONB
+  * created_at : TIMESTAMP
+}
+
+entity "WORK_ORDERS" as work_orders {
+  * **work_order_id** : UUID <<PK>>
+  --
+  * vehicle_id : UUID <<FK>>
+  * created_by : UUID <<FK>>
+  assigned_mechanic_id : UUID <<FK>>
+  * status : work_order_status_enum
+  * description : TEXT
+  estimated_cost : DECIMAL(10,2)
+  actual_cost : DECIMAL(10,2)
+  work_details : JSONB
+  * created_at : TIMESTAMP
+  started_at : TIMESTAMP
+  completed_at : TIMESTAMP
+}
+
+entity "WORK_LOG" as work_log {
+  * **log_id** : SERIAL <<PK>>
+  --
+  * work_order_id : UUID <<FK>>
+  * mechanic_id : UUID <<FK>>
+  * log_entry : TEXT
+  hours_worked : DECIMAL(4,2)
+  * timestamp : TIMESTAMP
+}
+
+entity "INVOICES" as invoices {
+  * **invoice_id** : UUID <<PK>>
+  --
+  * work_order_id : UUID <<FK>>
+  * customer_id : UUID <<FK>>
+  created_by : UUID <<FK>>
+  * invoice_number : VARCHAR(50) <<UK>>
+  * total_amount : DECIMAL(10,2)
+  tax_amount : DECIMAL(10,2)
+  * status : invoice_status_enum
+  * issued_at : TIMESTAMP
+  paid_at : TIMESTAMP
+}
+
+entity "SESSIONS" as sessions {
+  * **session_id** : UUID <<PK>>
+  --
+  * user_id : UUID <<FK>>
+  * ip_address : INET
+  user_agent : TEXT
+  * created_at : TIMESTAMP
+  * expires_at : TIMESTAMP
+  * is_active : BOOLEAN
+}
+
+entity "AUDIT_LOG" as audit_log {
+  * **log_id** : SERIAL <<PK>>
+  --
+  * user_id : UUID <<FK>>
+  * action_type : VARCHAR(50)
+  * table_name : VARCHAR(50)
+  record_id : UUID
+  old_value : JSONB
+  new_value : JSONB
+  ip_address : INET
+  * timestamp : TIMESTAMP
+}
+
+' Relationships
+users ||--o{ user_roles : "has"
+roles ||--o{ user_roles : "assigned to"
+users ||--o{ user_roles : "assigns (assigned_by)"
+
+roles ||--o{ role_permissions : "has"
+permissions ||--o{ role_permissions : "granted to"
+
+roles ||--o{ roles : "inherits from (parent_role_id)"
+
+users ||--o{ vehicles : "owns"
+vehicles ||--o{ work_orders : "has service history"
+
+users ||--o{ work_orders : "creates (receptionist)"
+users ||--o{ work_orders : "assigned to (mechanic)"
+
+work_orders ||--o{ work_log : "has entries"
+work_orders ||--|| invoices : "generates"
+
+users ||--o{ invoices : "receives (customer)"
+users ||--o{ invoices : "creates (accountant)"
+
+users ||--o{ sessions : "has"
+users ||--o{ audit_log : "performs actions"
+
+@enduml

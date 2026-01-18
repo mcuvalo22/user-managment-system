@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(sudo apt-get update:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(pdflatex:*)",
+      "Bash(chmod:*)",
+      "Bash(./compile.sh)",
+      "Bash(bash:*)",
+      "Bash(ls:*)",
+      "Bash(dpkg:*)",
+      "Bash(tlmgr install:*)",
+      "Bash(kpsewhich:*)",
+      "Bash(apt-cache policy:*)",
+      "Bash(tlmgr init-usertree:*)",
+      "Bash(tlmgr:*)",
+      "Bash(texhash:*)",
+      "Bash(psql:*)",
+      "Bash(xargs ls:*)"
+    ]
+  }
+}

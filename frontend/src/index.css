@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gray-950: #030712;
+  --color-gray-900: #111827;
+  --color-gray-800: #1f2937;
+  --color-gray-700: #374151;
+  --color-gray-600: #4b5563;
+  --color-gray-500: #6b7280;
+  --color-gray-400: #9ca3af;
+  --color-gray-300: #d1d5db;
+  --color-gray-200: #e5e7eb;
+  --color-gray-100: #f3f4f6;
+}
+
+body {
+  background-color: var(--color-gray-950);
+  color: var(--color-gray-100);
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: var(--color-gray-800);
+  color: var(--color-gray-100);
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-gray-600);
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-gray-700);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-gray-900);
+  border: 2px solid var(--color-gray-700);
+  border-radius: 0.5rem;
+  color: var(--color-gray-100);
+  transition: all 0.2s;
+}
+
+.input::placeholder {
+  color: var(--color-gray-500);
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.card {
+  background-color: var(--color-gray-900);
+  border: 2px solid var(--color-gray-700);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: var(--color-gray-600);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: var(--color-gray-800);
+  border: 2px solid var(--color-gray-700);
+  padding: 1rem 1.5rem;
+  text-align: left;
+  color: var(--color-gray-300);
+  font-weight: 600;
+}
+
+.table td {
+  border: 2px solid var(--color-gray-800);
+  padding: 1rem 1.5rem;
+  color: var(--color-gray-100);
+  background-color: var(--color-gray-900);
+}
+
+.table tr:hover td {
+  background-color: var(--color-gray-800);
+}
+
+@media print {
+  body {
+    background-color: white;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}
