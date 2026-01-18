@@ -213,7 +213,3 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 
 - [QUICK_START.md](QUICK_START.md) – Quick reference for getting started
 - [AUDIT_REPORT.md](AUDIT_REPORT.md) – Comprehensive code audit and verification
-- **Access Control**: Role-based authorization patterns in relational systems
-- **Audit Logging**: Trigger-based change tracking with before/after value preservation
-- **Query Optimization**: Indexes, materialized views, and execution plans
-- **Stored Procedures**: Business logic encapsulation in the database layer
