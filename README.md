@@ -213,12 +213,6 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 
 - [QUICK_START.md](QUICK_START.md) – Quick reference for getting started
 - [AUDIT_REPORT.md](AUDIT_REPORT.md) – Comprehensive code audit and verification
-
-## References
-
-This project demonstrates key concepts from relational database theory including:
-- **Normalization**: BCNF schema design with proper dependency preservation
-- **Referential Integrity**: Foreign key constraints with cascading operations
 - **Access Control**: Role-based authorization patterns in relational systems
 - **Audit Logging**: Trigger-based change tracking with before/after value preservation
 - **Query Optimization**: Indexes, materialized views, and execution plans
