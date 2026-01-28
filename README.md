@@ -52,7 +52,7 @@ Role-specific dashboards display relevant business metrics and controls. Owners 
 ### Quick Start (Fully Automated)
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR-USERNAME/user-management-system.git
+git clone https://github.com/mcuvalo22/user-management-system.git
 cd user-management-system
 
 # Run the setup script (handles everything)
