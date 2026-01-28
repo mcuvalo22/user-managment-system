@@ -139,36 +139,6 @@ All test users have password: `password123`
 - **Modal dialogs** for forms and confirmations
 - **Responsive design** with Tailwind CSS
 
-## Project Structure
-
-```
-user-management-system/
-├── backend/
-│   ├── app.py              # Flask application and all endpoints
-│   ├── auth_helper.py      # JWT and authorization utilities
-│   ├── database.py         # Database connection and queries
-│   ├── config.py           # Configuration management
-│   └── requirements.txt    # Python dependencies
-├── frontend/
-│   ├── src/
-│   │   ├── pages/          # Page components
-│   │   ├── components/     # Reusable components
-│   │   ├── services/       # API client
-│   │   ├── context/        # Auth context
-│   │   └── App.jsx         # Main app component
-│   ├── package.json        # Node dependencies
-│   └── vite.config.js      # Vite configuration
-├── database/
-│   ├── schema.sql          # Database tables and indexes
-│   ├── functions.sql       # Stored procedures and functions
-│   ├── views.sql           # Materialized views
-│   ├── triggers.sql        # Audit logging triggers
-│   └── seed.sql            # Test data
-├── setup.sh                # Automated installation script
-├── QUICK_START.md          # Quick reference guide
-└── README.md               # This file
-```
-
 ## Key Features in Detail
 
 ### Security
@@ -212,4 +182,3 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 ## Additional Documentation
 
 - [QUICK_START.md](QUICK_START.md) – Quick reference for getting started
-- [AUDIT_REPORT.md](AUDIT_REPORT.md) – Comprehensive code audit and verification
